@@ -6,6 +6,9 @@ import com.example.pdf.service.JasperReportPdfService;
 import com.example.pdf.service.NewsService;
 import com.example.pdf.service.RestTemplateService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +30,14 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public void formReport() throws JsonProcessingException {
+    public String formReport() throws JsonProcessingException {
         Map<String, String> parameters = formParameters();
         String urn = restTemplateService.buildUrn(URN_PART, parameters);
         String json = restTemplateService.sendRequest(urn);
         List<News> newsList = NewsJsonMapper.map(json);
-        jasperReportPdfService.exportReport(new HashMap<>(), newsList);
+        String fileName = jasperReportPdfService.exportReport(new HashMap<>(), newsList);
+
+        return fileName;
     }
 
     private Map<String, String> formParameters() {

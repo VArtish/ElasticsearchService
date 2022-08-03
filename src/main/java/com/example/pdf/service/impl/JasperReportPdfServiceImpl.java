@@ -19,21 +19,24 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class JasperReportPdfServiceImpl implements JasperReportPdfService<News> {
     private static final Logger LOGGER = LogManager.getLogger(JasperReportPdfServiceImpl.class);
     private static final String AUTHOR_METADATA = "Artish";
     private static final String ALLOWED_PERMISSION_HINT = "PRINTING";
-    private static final String PATH_INPUT_FILE = "src/main/resources/book.jrxml";
-    private static final String OUTPUT_FILE_NAME = "output.pdf";
+    private static final String PATH_INPUT_FILE = "src/main/resources/first_report.jrxml";
+    private static final String PATH_OUTPUT_FILE = "src/main/resources/";
 
-    public void exportReport(Map<String, Object> parameters, List<News> dataSource) {
+    public String exportReport(Map<String, Object> parameters, List<News> dataSource) {
         File file = new File(PATH_INPUT_FILE);
         JasperPrint jasperPrint = formJasperPrint(file, parameters, dataSource);
         JRPdfExporter exporter = new JRPdfExporter();
-        exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(OUTPUT_FILE_NAME));
+        SimpleExporterInput simpleExporterInput = new SimpleExporterInput(jasperPrint);
+        exporter.setExporterInput(simpleExporterInput);
+        String fileName = UUID.randomUUID().toString();
+        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(PATH_OUTPUT_FILE + fileName + ".pdf"));
         exporter.setConfiguration(formPdfExporterConfiguration());
         exporter.setConfiguration(formPdfReportConfiguration());
 
@@ -42,6 +45,8 @@ public class JasperReportPdfServiceImpl implements JasperReportPdfService<News> 
         } catch (JRException jrException) {
             LOGGER.log(Level.ERROR, jrException.getMessage());
         }
+
+        return fileName;
     }
 
     private SimplePdfReportConfiguration formPdfReportConfiguration() {
@@ -69,7 +74,7 @@ public class JasperReportPdfServiceImpl implements JasperReportPdfService<News> 
             JasperDesign jasperDesign = JRXmlLoader.load(file);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(newsList);
-            jasperPrint = JasperFillManager.fillReport(jasperReport, parameters);
+            jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, beanColDataSource);
         } catch (JRException jrException) {
             LOGGER.log(Level.ERROR, jrException.getMessage());
         }

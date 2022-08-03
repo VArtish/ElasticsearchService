@@ -26,7 +26,7 @@ public class JasperReportPdfServiceImpl implements JasperReportPdfService<News> 
     private static final Logger LOGGER = LogManager.getLogger(JasperReportPdfServiceImpl.class);
     private static final String AUTHOR_METADATA = "Artish";
     private static final String ALLOWED_PERMISSION_HINT = "PRINTING";
-    private static final String PATH_INPUT_FILE = "src/main/resources/first_report.jrxml";
+    private static final String PATH_INPUT_FILE = "src/main/resources/book.jrxml";
     private static final String PATH_OUTPUT_FILE = "src/main/resources/";
 
     public String exportReport(Map<String, Object> parameters, List<News> dataSource) {
@@ -74,7 +74,7 @@ public class JasperReportPdfServiceImpl implements JasperReportPdfService<News> 
             JasperDesign jasperDesign = JRXmlLoader.load(file);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(newsList);
-            jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, beanColDataSource);
+            jasperPrint = JasperFillManager.fillReport(jasperReport, parameters);
         } catch (JRException jrException) {
             LOGGER.log(Level.ERROR, jrException.getMessage());
         }

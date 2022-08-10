@@ -22,15 +22,9 @@ public class NewsJsonMapper {
 
         while(elements.hasNext()) {
             JsonNode jsonNode = elements.next();
-            String author = jsonNode.get(AUTHOR).asText();
-            String category = jsonNode.get(CATEGORY).asText();
-            String source = jsonNode.get(SOURCE).asText();
             String description = jsonNode.get(DESCRIPTION).asText();
-            String image = jsonNode.get(IMAGE).asText();
-            String country = jsonNode.get(COUNTRY).asText();
-            String date = jsonNode.get(DATE).asText();
             String title = jsonNode.get(TITLE).asText();
-            News news = new News(title, description, author, source, country, image, category, date);
+            News news = new News(title, description);
             newsList.add(news);
         }
 

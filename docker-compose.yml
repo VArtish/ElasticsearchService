@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  elasticsearch:
+    build: config/elasticsearch/
+    container_name: elasticsearch
+    ports:
+      - 9200:9200/tcp
+    hostname: localhost
+    environment:
+      - xpack.security.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - discovery.type=single-node

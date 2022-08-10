@@ -2,13 +2,9 @@ package com.example.pdf.service.impl;
 
 import com.example.pdf.model.entity.News;
 import com.example.pdf.model.mapper.NewsJsonMapper;
-import com.example.pdf.service.JasperReportPdfService;
 import com.example.pdf.service.NewsService;
-import com.example.pdf.service.RestTemplateService;
+import com.example.pdf.service.RestTemplateNewsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +16,11 @@ import static com.example.pdf.model.entity.RestTemplateParameterData.*;
 
 @Service
 public class NewsServiceImpl implements NewsService {
-    private JasperReportPdfService jasperReportPdfService;
-    private RestTemplateService restTemplateService;
+    private RestTemplateNewsService restTemplateService;
 
     @Autowired
-    public NewsServiceImpl(JasperReportPdfService jasperReportPdfService, RestTemplateService restTemplateService) {
+    public NewsServiceImpl(RestTemplateNewsService restTemplateService) {
         this.restTemplateService = restTemplateService;
-        this.jasperReportPdfService = jasperReportPdfService;
     }
 
     @Override
@@ -35,9 +29,8 @@ public class NewsServiceImpl implements NewsService {
         String urn = restTemplateService.buildUrn(URN_PART, parameters);
         String json = restTemplateService.sendRequest(urn);
         List<News> newsList = NewsJsonMapper.map(json);
-        String fileName = jasperReportPdfService.exportReport(new HashMap<>(), newsList);
 
-        return fileName;
+        return "";
     }
 
     private Map<String, String> formParameters() {

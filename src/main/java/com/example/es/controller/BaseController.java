@@ -1,15 +1,11 @@
-package com.example.pdf.controller;
+package com.example.es.controller;
 
-import com.example.pdf.model.entity.News;
-import com.example.pdf.service.impl.ElasticsearchServiceImpl;
+import com.example.es.service.impl.ElasticsearchServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/pdf")

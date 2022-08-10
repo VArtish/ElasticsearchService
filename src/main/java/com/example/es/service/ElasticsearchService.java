@@ -1,6 +1,6 @@
-package com.example.pdf.service;
+package com.example.es.service;
 
-import com.example.pdf.model.entity.News;
+import com.example.es.model.entity.News;
 
 import java.util.List;
 

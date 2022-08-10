@@ -1,9 +1,9 @@
-package com.example.pdf.service.impl;
+package com.example.es.service.impl;
 
-import com.example.pdf.model.entity.News;
-import com.example.pdf.model.mapper.NewsJsonMapper;
-import com.example.pdf.service.NewsService;
-import com.example.pdf.service.RestTemplateNewsService;
+import com.example.es.model.entity.News;
+import com.example.es.model.mapper.NewsJsonMapper;
+import com.example.es.service.NewsService;
+import com.example.es.service.RestTemplateNewsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.pdf.model.entity.RestTemplateParameterData.*;
+import static com.example.es.model.entity.RestTemplateParameterData.*;
 
 @Service
 public class NewsServiceImpl implements NewsService {

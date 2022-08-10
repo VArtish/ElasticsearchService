@@ -1,15 +1,11 @@
-package com.example.pdf.service.impl;
+package com.example.es.service.impl;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
-import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import com.example.pdf.model.entity.News;
-import com.example.pdf.service.ElasticsearchService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.es.model.entity.News;
+import com.example.es.service.ElasticsearchService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

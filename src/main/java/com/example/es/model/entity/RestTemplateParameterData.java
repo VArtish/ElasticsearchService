@@ -1,4 +1,4 @@
-package com.example.pdf.model.entity;
+package com.example.es.model.entity;
 
 public class RestTemplateParameterData {
     public static final String ACCESS_KEY = "access_key";

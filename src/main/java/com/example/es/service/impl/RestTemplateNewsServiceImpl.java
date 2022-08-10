@@ -1,7 +1,6 @@
-package com.example.pdf.service.impl;
+package com.example.es.service.impl;
 
-import com.example.pdf.service.RestTemplateNewsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.es.service.RestTemplateNewsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

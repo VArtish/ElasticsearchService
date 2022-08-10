@@ -1,4 +1,4 @@
-package com.example.pdf.model.entity;
+package com.example.es.model.entity;
 
 public class JsonParameterData {
     public static final String AUTHOR = "author";

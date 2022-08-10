@@ -1,10 +1,10 @@
-package com.example.pdf;
+package com.example.es;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PdfApplicationTests {
+class ElasticsearchApplicationTests {
 
     @Test
     void contextLoads() {

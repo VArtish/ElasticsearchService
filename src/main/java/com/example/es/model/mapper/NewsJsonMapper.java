@@ -1,6 +1,6 @@
-package com.example.pdf.model.mapper;
+package com.example.es.model.mapper;
 
-import com.example.pdf.model.entity.News;
+import com.example.es.model.entity.News;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.example.pdf.model.entity.JsonParameterData.*;
+import static com.example.es.model.entity.JsonParameterData.*;
 
 public class NewsJsonMapper {
     private static final ObjectMapper mapper = new ObjectMapper();
